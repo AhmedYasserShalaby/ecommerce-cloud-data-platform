@@ -14,6 +14,51 @@ from commerce_platform.dashboard_data import (
 
 st.set_page_config(page_title="E-Commerce Data Platform", page_icon="database", layout="wide")
 
+st.markdown(
+    """
+    <style>
+    .metric-tile {
+        border: 1px solid rgba(49, 51, 63, 0.16);
+        border-radius: 8px;
+        padding: 14px 16px;
+        min-height: 96px;
+        background: #ffffff;
+    }
+    .metric-label {
+        color: #5f6675;
+        font-size: 0.86rem;
+        margin-bottom: 8px;
+    }
+    .metric-value {
+        color: #262730;
+        font-size: 1.65rem;
+        font-weight: 700;
+        line-height: 1.15;
+        overflow-wrap: anywhere;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+def metric_tile(label: str, value: str) -> str:
+    return f"""
+    <div class="metric-tile">
+        <div class="metric-label">{label}</div>
+        <div class="metric-value">{value}</div>
+    </div>
+    """
+
+
+def compact_currency(value: float) -> str:
+    if abs(value) >= 1_000_000:
+        return f"EGP {value / 1_000_000:.1f}M"
+    if abs(value) >= 1_000:
+        return f"EGP {value / 1_000:.1f}K"
+    return f"EGP {value:,.0f}"
+
+
 st.title("E-Commerce Cloud Data Platform")
 st.caption("Batch + streaming lakehouse, DuckDB marts, quality observability, and AWS-ready architecture.")
 
@@ -23,11 +68,11 @@ with st.spinner("Preparing platform data if needed..."):
 
 kpis = executive_kpis()
 cols = st.columns(5)
-cols[0].metric("Revenue", f"EGP {kpis['revenue']:,.0f}")
-cols[1].metric("Orders", f"{kpis['orders']:,.0f}")
-cols[2].metric("Customers", f"{kpis['customers']:,.0f}")
-cols[3].metric("On-time SLA", f"{kpis['on_time_rate']:.1%}")
-cols[4].metric("Platform Score", f"{kpis['platform_score']:.1f}%")
+cols[0].markdown(metric_tile("Revenue", compact_currency(kpis["revenue"])), unsafe_allow_html=True)
+cols[1].markdown(metric_tile("Orders", f"{kpis['orders']:,.0f}"), unsafe_allow_html=True)
+cols[2].markdown(metric_tile("Customers", f"{kpis['customers']:,.0f}"), unsafe_allow_html=True)
+cols[3].markdown(metric_tile("On-time SLA", f"{kpis['on_time_rate']:.1%}"), unsafe_allow_html=True)
+cols[4].markdown(metric_tile("Platform Score", f"{kpis['platform_score']:.1f}%"), unsafe_allow_html=True)
 
 tabs = st.tabs(["Revenue", "Funnel", "Inventory", "Quality", "SQL"])
 
