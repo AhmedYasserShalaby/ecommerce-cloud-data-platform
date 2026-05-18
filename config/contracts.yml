@@ -1,0 +1,58 @@
+customers:
+  required: [customer_id, email, region, acquisition_channel, signup_date, loyalty_tier]
+  unique: [customer_id]
+products:
+  required: [product_id, sku, category, brand, unit_cost, unit_price, active]
+  unique: [product_id]
+  positive: [unit_cost, unit_price]
+warehouses:
+  required: [warehouse_id, region, capacity_units, priority]
+  unique: [warehouse_id]
+  positive: [capacity_units]
+inventory:
+  required: [warehouse_id, product_id, snapshot_date, on_hand_units, reorder_point]
+  non_negative: [on_hand_units, reorder_point]
+orders:
+  required: [order_id, customer_id, order_ts, status, region, currency]
+  unique: [order_id]
+  allowed:
+    status: [created, paid, packed, shipped, delivered, cancelled, returned]
+  foreign_keys:
+    customer_id: customers.customer_id
+order_items:
+  required: [order_item_id, order_id, product_id, warehouse_id, quantity, unit_price, discount_pct]
+  unique: [order_item_id]
+  positive: [quantity, unit_price]
+  foreign_keys:
+    order_id: orders.order_id
+    product_id: products.product_id
+    warehouse_id: warehouses.warehouse_id
+payments:
+  required: [payment_id, order_id, payment_ts, payment_method, payment_status, amount]
+  unique: [payment_id]
+  positive: [amount]
+  allowed:
+    payment_status: [authorized, captured, failed, refunded]
+  foreign_keys:
+    order_id: orders.order_id
+shipments:
+  required: [shipment_id, order_id, warehouse_id, ship_ts, promised_delivery_ts, delivered_ts, carrier, shipping_cost]
+  unique: [shipment_id]
+  non_negative: [shipping_cost]
+  foreign_keys:
+    order_id: orders.order_id
+    warehouse_id: warehouses.warehouse_id
+returns:
+  required: [return_id, order_item_id, return_ts, reason, refund_amount]
+  unique: [return_id]
+  non_negative: [refund_amount]
+  foreign_keys:
+    order_item_id: order_items.order_item_id
+web_events:
+  required: [event_id, customer_id, session_id, event_ts, event_type, product_id, device, campaign]
+  unique: [event_id]
+  allowed:
+    event_type: [page_view, product_view, add_to_cart, checkout_start, purchase, search]
+  foreign_keys:
+    customer_id: customers.customer_id
+    product_id: products.product_id
