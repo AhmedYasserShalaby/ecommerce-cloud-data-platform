@@ -24,4 +24,4 @@ Profiles:
 | --- | --- |
 | ci | Fast tests and clean clone smoke runs. |
 | demo | Dashboard demos and screenshots. |
-| full | Recruiter-scale run: 250k+ orders and 5M+ events. |
+| full | Large-scale synthetic run: 250k+ orders and 5M+ events. |

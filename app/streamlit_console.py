@@ -135,7 +135,7 @@ footer = pd.DataFrame(
     [
         {"layer": "bronze", "purpose": "raw batch and streaming landing"},
         {"layer": "silver", "purpose": "typed, deduped, PII-safe business entities"},
-        {"layer": "gold", "purpose": "DuckDB marts for BI and recruiter-visible KPIs"},
+        {"layer": "gold", "purpose": "DuckDB marts for BI and operational KPIs"},
     ]
 )
 st.sidebar.dataframe(footer, hide_index=True)

@@ -5,7 +5,7 @@
 
 Hybrid local/AWS-ready data platform for e-commerce operations: batch ingestion, streaming events, bronze/silver/gold lakehouse layers, Spark-style transformations, dbt/DuckDB marts, Airflow orchestration, quality observability, and a Streamlit platform console.
 
-## 5-Second Recruiter Scan
+## Project Snapshot
 
 - Processes **250k+ orders and 5M+ event rows** in the full profile.
 - Uses **Python, SQL, DuckDB, Parquet, Spark-compatible transforms, dbt models, Airflow, Redpanda, Docker, Terraform, Streamlit, CI**.
@@ -63,11 +63,9 @@ docker compose up dashboard
 - [Streaming](docs/streaming.md)
 - [AWS mapping](docs/aws_mapping.md)
 - [Data quality](docs/data_quality.md)
-- [Recruiter walkthrough](docs/recruiter_walkthrough.md)
-- [Interview guide](docs/interview_guide.md)
-- [CV positioning](docs/cv_positioning.md)
+- [Platform walkthrough](docs/platform_walkthrough.md)
 
-## CV Bullets
+## Project Summary
 
 - Built a hybrid local/AWS-ready e-commerce data platform processing 250k+ orders and 5M+ events through batch and streaming ingestion into bronze, silver, and gold lakehouse layers.
 - Implemented Spark-compatible cleaning, DuckDB/dbt-style marts, Airflow DAGs, data quality checks, freshness monitoring, and a Streamlit console for revenue, funnel, SLA, inventory, and LTV analytics.

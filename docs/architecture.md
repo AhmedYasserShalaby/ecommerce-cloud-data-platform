@@ -26,7 +26,7 @@ flowchart LR
 | Gold | DuckDB/dbt-style marts for BI and operational analytics. |
 | Observability | Contract summary, freshness, quality checks, scorecard, report. |
 
-## Why It Is Recruiter-Relevant
+## Why It Is Useful
 
 - Shows orchestration, quality, lakehouse modeling, streaming, warehouse marts, and dashboarding together.
 - Has small CI data and full-scale generation without committing large files.
