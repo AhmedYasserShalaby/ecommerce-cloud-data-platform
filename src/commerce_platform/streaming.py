@@ -12,7 +12,6 @@ from commerce_platform.generator import CHANNELS, EVENT_TYPES
 from commerce_platform.paths import get_paths
 from commerce_platform.profiles import get_profile
 
-
 STREAM_TOPIC_FILE = "commerce.events.jsonl"
 CHECKPOINT_FILE = "commerce.events.checkpoint.json"
 

@@ -5,13 +5,12 @@ import random
 from dataclasses import asdict
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
-from uuid import uuid5, NAMESPACE_URL
+from uuid import NAMESPACE_URL, uuid5
 
 import pandas as pd
 
-from commerce_platform.paths import PlatformPaths, get_paths
+from commerce_platform.paths import get_paths
 from commerce_platform.profiles import DataProfile, get_profile
-
 
 CATEGORIES = ["electronics", "home", "fashion", "beauty", "sports", "grocery", "books", "toys"]
 REGIONS = ["Cairo", "Giza", "Alexandria", "Delta", "Upper Egypt", "Gulf"]
@@ -155,7 +154,9 @@ def _generate_inventory(
     return pd.DataFrame(rows)
 
 
-def _generate_orders(profile: DataProfile, rng: random.Random, customers: pd.DataFrame, base_date: datetime) -> pd.DataFrame:
+def _generate_orders(
+    profile: DataProfile, rng: random.Random, customers: pd.DataFrame, base_date: datetime
+) -> pd.DataFrame:
     customer_ids = customers["customer_id"].tolist()
     rows = []
     for i in range(1, profile.orders + 1):
@@ -220,7 +221,9 @@ def _generate_payments(rng: random.Random, orders: pd.DataFrame, order_items: pd
                 "order_id": row.order_id,
                 "payment_ts": paid_at.isoformat(),
                 "payment_method": rng.choice(["card", "wallet", "cash_on_delivery", "bank_transfer"]),
-                "payment_status": rng.choices(["authorized", "captured", "failed", "refunded"], weights=[8, 82, 7, 3])[0],
+                "payment_status": rng.choices(["authorized", "captured", "failed", "refunded"], weights=[8, 82, 7, 3])[
+                    0
+                ],
                 "amount": round(row.net, 2),
             }
         )

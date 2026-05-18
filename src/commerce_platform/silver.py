@@ -127,7 +127,7 @@ def _orders(frame: pd.DataFrame) -> pd.DataFrame:
     out = frame.drop_duplicates("order_id").copy()
     out["order_ts"] = pd.to_datetime(out["order_ts"], utc=True)
     out["order_date"] = out["order_ts"].dt.date.astype(str)
-    out["order_month"] = out["order_ts"].dt.to_period("M").astype(str)
+    out["order_month"] = out["order_ts"].dt.tz_localize(None).dt.to_period("M").astype(str)
     return out
 
 
@@ -170,7 +170,7 @@ def _web_events(frame: pd.DataFrame) -> pd.DataFrame:
     out = frame.drop_duplicates("event_id").copy()
     out["event_ts"] = pd.to_datetime(out["event_ts"], utc=True)
     out["event_date"] = out["event_ts"].dt.date.astype(str)
-    out["event_month"] = out["event_ts"].dt.to_period("M").astype(str)
+    out["event_month"] = out["event_ts"].dt.tz_localize(None).dt.to_period("M").astype(str)
     out["is_late_event"] = out["event_ts"] < pd.Timestamp("2025-01-01", tz="UTC")
     return out
 

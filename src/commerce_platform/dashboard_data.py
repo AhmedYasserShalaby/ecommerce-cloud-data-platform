@@ -8,7 +8,6 @@ import pandas as pd
 from commerce_platform.paths import get_paths
 from commerce_platform.quality import run_quality
 
-
 DEFAULT_QUERY = """
 select order_date, region, revenue, gross_margin_pct
 from mart_revenue_daily

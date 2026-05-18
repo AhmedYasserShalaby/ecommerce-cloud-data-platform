@@ -15,7 +15,16 @@ def main() -> None:
     parser.add_argument("--version", action="store_true", help="Print version and exit.")
     subparsers = parser.add_subparsers(dest="command")
 
-    for name in ["generate-batch", "stream-produce", "stream-consume", "run-spark", "run-dbt", "run-quality", "run-all", "smoke"]:
+    for name in [
+        "generate-batch",
+        "stream-produce",
+        "stream-consume",
+        "run-spark",
+        "run-dbt",
+        "run-quality",
+        "run-all",
+        "smoke",
+    ]:
         command = subparsers.add_parser(name)
         command.add_argument("--profile", default="ci", choices=["ci", "demo", "full"])
         if name == "stream-produce":
