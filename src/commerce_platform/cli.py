@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import argparse
 
+from commerce_platform.generator import generate_batch
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(prog="commerce-platform")
@@ -29,6 +31,11 @@ def main() -> None:
         return
     if not args.command:
         parser.print_help()
+        return
+
+    if args.command == "generate-batch":
+        manifest = generate_batch(args.profile)
+        print(f"Generated batch profile={args.profile} at {manifest['batch_dir']}")
         return
 
     raise SystemExit(f"{args.command} is not implemented yet.")
