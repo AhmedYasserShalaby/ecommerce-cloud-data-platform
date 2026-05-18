@@ -28,6 +28,10 @@ flowchart LR
     I[AWS-ready Terraform] -. maps to .-> J[S3 Glue Athena CloudWatch IAM]
 ```
 
+## Platform Console Preview
+
+![Streamlit platform console](assets/screenshots/platform_console.png)
+
 ## Local Run
 
 ```bash
