@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import argparse
 
-from commerce_platform.bronze import load_bronze
 from commerce_platform.generator import generate_batch
+from commerce_platform.silver import run_silver
 
 
 def main() -> None:
@@ -39,8 +39,8 @@ def main() -> None:
         print(f"Generated batch profile={args.profile} at {manifest['batch_dir']}")
         return
     if args.command == "run-spark":
-        counts = load_bronze(args.profile)
-        print(f"Loaded bronze profile={args.profile}: {counts}")
+        counts = run_silver(args.profile)
+        print(f"Built silver profile={args.profile}: {counts}")
         return
 
     raise SystemExit(f"{args.command} is not implemented yet.")
