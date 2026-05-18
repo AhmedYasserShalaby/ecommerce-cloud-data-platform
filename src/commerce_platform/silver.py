@@ -7,6 +7,7 @@ import pandas as pd
 
 from commerce_platform.bronze import LOAD_ORDER, load_bronze
 from commerce_platform.paths import PlatformPaths, get_paths
+from commerce_platform.streaming import read_stream_bronze
 
 
 def run_silver(profile: str = "ci", data_root: str | Path | None = None) -> dict[str, int]:
@@ -18,6 +19,16 @@ def run_silver(profile: str = "ci", data_root: str | Path | None = None) -> dict
     silver_root.mkdir(parents=True, exist_ok=True)
 
     frames = {table: pd.read_parquet(bronze_root / table / "part-000.parquet") for table in LOAD_ORDER}
+    web_events = frames["web_events"]
+    stream_events = read_stream_bronze(profile, paths.data_root)
+    if not stream_events.empty:
+        for column in web_events.columns:
+            if column not in stream_events.columns:
+                stream_events[column] = None
+        stream_events["ingest_profile"] = profile
+        stream_events["ingest_run_date"] = "stream"
+        web_events = pd.concat([web_events, stream_events[web_events.columns]], ignore_index=True)
+
     transformed = {
         "customers": _customers(frames["customers"]),
         "products": _products(frames["products"]),
@@ -28,7 +39,7 @@ def run_silver(profile: str = "ci", data_root: str | Path | None = None) -> dict
         "payments": _payments(frames["payments"]),
         "shipments": _shipments(frames["shipments"]),
         "returns": _returns(frames["returns"]),
-        "web_events": _web_events(frames["web_events"]),
+        "web_events": _web_events(web_events),
     }
 
     counts = {}
