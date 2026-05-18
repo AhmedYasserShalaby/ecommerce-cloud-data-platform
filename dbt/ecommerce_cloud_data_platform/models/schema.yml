@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: mart_revenue_daily
+    description: Daily revenue, gross profit, and margin by order region.
+    columns:
+      - name: order_date
+        tests: [not_null]
+      - name: revenue
+        tests: [not_null]
+  - name: mart_customer_ltv
+    description: Customer-level revenue, frequency, and last-order metrics.
+  - name: mart_funnel_conversion
+    description: Web event funnel by date and campaign.
+  - name: mart_fulfillment_sla
+    description: Shipment speed and on-time delivery performance.

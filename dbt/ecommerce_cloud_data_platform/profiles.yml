@@ -1,0 +1,6 @@
+ecommerce_cloud_data_platform:
+  target: local
+  outputs:
+    local:
+      type: duckdb
+      path: ../../data/warehouse/commerce.duckdb
