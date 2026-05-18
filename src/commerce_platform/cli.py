@@ -4,6 +4,7 @@ import argparse
 
 from commerce_platform.generator import generate_batch
 from commerce_platform.gold import run_gold
+from commerce_platform.orchestration import run_all
 from commerce_platform.silver import run_silver
 from commerce_platform.streaming import consume_stream_events, produce_stream_events
 
@@ -50,6 +51,10 @@ def main() -> None:
     if args.command == "run-dbt":
         counts = run_gold(args.profile)
         print(f"Built gold profile={args.profile}: {counts}")
+        return
+    if args.command == "run-all":
+        result = run_all(args.profile)
+        print(f"Completed platform run profile={args.profile}: {result['gold_counts']}")
         return
 
     raise SystemExit(f"{args.command} is not implemented yet.")
