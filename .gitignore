@@ -18,6 +18,9 @@ data/stream/
 logs/
 airflow/logs/
 airflow/plugins/
+dbt/**/.user.yml
+dbt/**/target/
+dbt/**/logs/
 
 *.duckdb
 *.sqlite
