@@ -1,0 +1,11 @@
+minimum_contract_quality_score: 95
+maximum_late_event_rate: 0.05
+minimum_gold_marts: 9
+required_exports:
+  - mart_revenue_daily.csv
+  - mart_customer_ltv.csv
+  - mart_funnel_conversion.csv
+  - mart_fulfillment_sla.csv
+  - contract_summary.csv
+  - silver_manifest.csv
+  - gold_manifest.csv

@@ -5,6 +5,7 @@ import argparse
 from commerce_platform.generator import generate_batch
 from commerce_platform.gold import run_gold
 from commerce_platform.orchestration import run_all
+from commerce_platform.quality import run_quality
 from commerce_platform.silver import run_silver
 from commerce_platform.streaming import consume_stream_events, produce_stream_events
 
@@ -55,6 +56,10 @@ def main() -> None:
     if args.command == "run-all":
         result = run_all(args.profile)
         print(f"Completed platform run profile={args.profile}: {result['gold_counts']}")
+        return
+    if args.command == "run-quality":
+        result = run_quality(args.profile)
+        print(f"Quality result profile={args.profile}: {result}")
         return
 
     raise SystemExit(f"{args.command} is not implemented yet.")
