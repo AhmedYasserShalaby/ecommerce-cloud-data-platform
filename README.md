@@ -65,6 +65,7 @@ docker compose up dashboard
 - [Data quality](docs/data_quality.md)
 - [Recruiter walkthrough](docs/recruiter_walkthrough.md)
 - [Interview guide](docs/interview_guide.md)
+- [CV positioning](docs/cv_positioning.md)
 
 ## CV Bullets
 
