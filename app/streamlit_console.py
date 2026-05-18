@@ -80,25 +80,25 @@ with tabs[0]:
     revenue = load_export("mart_revenue_daily.csv")
     if not revenue.empty:
         daily = revenue.groupby("order_date", as_index=False)["revenue"].sum()
-        st.plotly_chart(px.line(daily, x="order_date", y="revenue", title="Daily Revenue"), use_container_width=True)
-        st.dataframe(revenue.sort_values("revenue", ascending=False).head(50), use_container_width=True)
+        st.plotly_chart(px.line(daily, x="order_date", y="revenue", title="Daily Revenue"), width="stretch")
+        st.dataframe(revenue.sort_values("revenue", ascending=False).head(50), width="stretch")
 
 with tabs[1]:
     funnel = load_export("mart_funnel_conversion.csv")
     if not funnel.empty:
         metrics = funnel[["product_views", "add_to_cart", "checkout_starts", "purchase_events"]].sum().reset_index()
         metrics.columns = ["stage", "events"]
-        st.plotly_chart(px.bar(metrics, x="stage", y="events", title="Event Funnel"), use_container_width=True)
-        st.dataframe(funnel.sort_values("sessions", ascending=False).head(50), use_container_width=True)
+        st.plotly_chart(px.bar(metrics, x="stage", y="events", title="Event Funnel"), width="stretch")
+        st.dataframe(funnel.sort_values("sessions", ascending=False).head(50), width="stretch")
 
 with tabs[2]:
     inventory = load_export("mart_inventory_risk.csv")
     if not inventory.empty:
         risk = inventory.groupby("risk_band", as_index=False).size()
-        st.plotly_chart(px.bar(risk, x="risk_band", y="size", title="Inventory Risk Bands"), use_container_width=True)
+        st.plotly_chart(px.bar(risk, x="risk_band", y="size", title="Inventory Risk Bands"), width="stretch")
         st.dataframe(
             inventory.sort_values(["inventory_risk", "on_hand_units"], ascending=[False, True]).head(75),
-            use_container_width=True,
+            width="stretch",
         )
 
 with tabs[3]:
@@ -107,21 +107,21 @@ with tabs[3]:
     contract_summary = load_export("contract_summary.csv")
     freshness = load_export("streaming_freshness.csv")
     st.subheader("Scorecard")
-    st.dataframe(scorecard, use_container_width=True)
+    st.dataframe(scorecard, width="stretch")
     st.subheader("Quality Checks")
-    st.dataframe(checks, use_container_width=True)
+    st.dataframe(checks, width="stretch")
     st.subheader("Contract Summary")
-    st.dataframe(contract_summary, use_container_width=True)
+    st.dataframe(contract_summary, width="stretch")
     if not freshness.empty:
         st.subheader("Streaming Freshness")
-        st.dataframe(freshness, use_container_width=True)
+        st.dataframe(freshness, width="stretch")
 
 with tabs[4]:
     query = st.text_area("DuckDB SQL", value=DEFAULT_QUERY, height=180)
     if st.button("Run query"):
         try:
             result = run_dashboard_query(query)
-            st.dataframe(result, use_container_width=True)
+            st.dataframe(result, width="stretch")
             st.download_button(
                 "Download CSV",
                 result.to_csv(index=False).encode("utf-8"),
