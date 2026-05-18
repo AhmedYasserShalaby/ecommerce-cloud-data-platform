@@ -51,6 +51,17 @@ docker compose up --build platform
 docker compose up dashboard
 ```
 
+## Documentation
+
+- [Architecture](docs/architecture.md)
+- [Data model](docs/data_model.md)
+- [Orchestration](docs/orchestration.md)
+- [Streaming](docs/streaming.md)
+- [AWS mapping](docs/aws_mapping.md)
+- [Data quality](docs/data_quality.md)
+- [Recruiter walkthrough](docs/recruiter_walkthrough.md)
+- [Interview guide](docs/interview_guide.md)
+
 ## CV Bullets
 
 - Built a hybrid local/AWS-ready e-commerce data platform processing 250k+ orders and 5M+ events through batch and streaming ingestion into bronze, silver, and gold lakehouse layers.
