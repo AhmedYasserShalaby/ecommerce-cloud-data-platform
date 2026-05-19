@@ -29,4 +29,7 @@ dbt/**/logs/
 *.jsonl
 *.log
 !assets/screenshots/.gitkeep
+!samples/
+!samples/*.csv
+!samples/*.md
 !data/.gitkeep

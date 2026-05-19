@@ -2,8 +2,11 @@
 
 [![Tests](https://github.com/AhmedYasserShalaby/ecommerce-cloud-data-platform/actions/workflows/tests.yml/badge.svg)](https://github.com/AhmedYasserShalaby/ecommerce-cloud-data-platform/actions/workflows/tests.yml)
 [![Secret Scan](https://github.com/AhmedYasserShalaby/ecommerce-cloud-data-platform/actions/workflows/secret-scan.yml/badge.svg)](https://github.com/AhmedYasserShalaby/ecommerce-cloud-data-platform/actions/workflows/secret-scan.yml)
+[![Pages](https://github.com/AhmedYasserShalaby/ecommerce-cloud-data-platform/actions/workflows/pages.yml/badge.svg)](https://github.com/AhmedYasserShalaby/ecommerce-cloud-data-platform/actions/workflows/pages.yml)
 
 Hybrid local/AWS-ready data platform for e-commerce operations: batch ingestion, streaming events, bronze/silver/gold lakehouse layers, Spark-style transformations, dbt/DuckDB marts, Airflow orchestration, quality observability, and a Streamlit platform console.
+
+Technical report: https://ahmedyassershalaby.github.io/ecommerce-cloud-data-platform/
 
 ## Project Snapshot
 
@@ -64,6 +67,13 @@ docker compose up dashboard
 - [AWS mapping](docs/aws_mapping.md)
 - [Data quality](docs/data_quality.md)
 - [Platform walkthrough](docs/platform_walkthrough.md)
+
+## Sample Outputs
+
+- [Platform scorecard](samples/platform_scorecard.csv)
+- [Quality checks](samples/quality_checks.csv)
+- [Revenue mart sample](samples/mart_revenue_daily.csv)
+- [Data quality report](samples/data_quality_report.md)
 
 ## Project Summary
 
